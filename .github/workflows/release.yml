@@ -6,6 +6,10 @@ permissions:
 on:
   workflow_call:
     inputs:
+      repo:
+        description: 'The repo to release'
+        required: true
+        type: string
       tag:
         description: 'Tag to create'
         required: true
@@ -45,8 +49,8 @@ jobs:
 
       - name: Ping pkg.go.dev
         run: |
-          echo "https://pkg.go.dev/fetch/${GITHUB_REPOSITORY}@${{ github.event.inputs.tag }}"
-          curl --show-error --fail -w "HTTP %{http_code}\n" -o - 'https://pkg.go.dev/fetch/${GITHUB_REPOSITORY}@${{ github.event.inputs.tag }}' \
+          echo "https://pkg.go.dev/fetch/${{ github.event.inputs.repo }}@${{ github.event.inputs.tag }}"
+          curl --show-error --fail -w "HTTP %{http_code}\n" -o - 'https://pkg.go.dev/fetch/${{ github.event.inputs.repo }}@${{ github.event.inputs.tag }}' \
             --connect-timeout 5 \
             --max-time 10 \
             --retry 10 \
