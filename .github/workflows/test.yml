@@ -2,6 +2,13 @@ name: test
 
 on:
   workflow_call:
+  workflow_dispatch:
+    inputs:
+      countries:
+        required: true
+        type: string
+        default: '"ae","bh","eg"'
+        description: e.g. '"ae","bh","eg"'
 
 jobs:
   run:
@@ -11,25 +18,29 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        go: ['stable', 'oldstable']
+        # go: ['stable', 'oldstable']
+        country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
 
     steps:
-      - name: Install Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go }}
-          check-latest: true
+      - name: Smoke
+        run: echo ${{ matrix.country }}
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # - name: Install Go
+      #   uses: actions/setup-go@v4
+      #   with:
+      #     go-version: ${{ matrix.go }}
+      #     check-latest: true
 
-      - name: Run tests
-        run: go test -v -count=1 -race -shuffle=on -coverprofile=coverage.txt ./...
+      # - name: Checkout code
+      #   uses: actions/checkout@v3
 
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v3
-        continue-on-error: true
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          file: ./coverage.txt
-          fail_ci_if_error: false
+      # - name: Run tests
+      #   run: go test -v -count=1 -race -shuffle=on -coverprofile=coverage.txt ./...
+
+      # - name: Upload Coverage
+      #   uses: codecov/codecov-action@v3
+      #   continue-on-error: true
+      #   with:
+      #     token: ${{secrets.CODECOV_TOKEN}}
+      #     file: ./coverage.txt
+      #     fail_ci_if_error: false
