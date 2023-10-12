@@ -3,28 +3,16 @@ name: test
 on:
   workflow_call:
   workflow_dispatch:
-    inputs:
-      countries:
-        required: true
-        type: string
-        default: '"ae","bh","eg"'
-        description: e.g. '"ae","bh","eg"'
 
 jobs:
   run:
     name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    strategy:
-      fail-fast: true
-      matrix:
-        # go: ['stable', 'oldstable']
-        country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
 
     steps:
       - name: Smoke
-        run: echo ${{ matrix.country }}
-
+        run: echo "hello test"
       # - name: Install Go
       #   uses: actions/setup-go@v4
       #   with:
