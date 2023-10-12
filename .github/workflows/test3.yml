@@ -1,0 +1,21 @@
+name: test3
+
+on:
+  workflow_call:
+    inputs:
+      countries:
+        required: true
+        type: string
+        description: e.g. "ae","eg","bh"
+
+jobs:
+  deploy:
+    name: test3
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
+    steps:
+      - name: Smoke
+        run: echo ${{ matrix.country }}
