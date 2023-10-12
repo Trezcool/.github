@@ -20,6 +20,6 @@ env:
 
 jobs:
   cd:
-    uses: Trezcool/.github/.github/workflows/test3.yml@master
+    uses: Trezcool/.github/.github/workflows/test3.yml@main
     with:
       countries: ${{ inputs.countries || env.DEFAULT_COUNTRIES }}
