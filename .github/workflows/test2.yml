@@ -20,10 +20,6 @@ env:
 
 jobs:
   cd:
-    name: test2
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-      - name: Smoke
-        run: echo ${{ inputs.countries || env.DEFAULT_COUNTRIES }}
+    uses: Trezcool/.github/.github/workflows/test3.yml@master
+    with:
+      countries: ${{ inputs.countries || env.DEFAULT_COUNTRIES }}
