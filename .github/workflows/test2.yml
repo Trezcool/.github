@@ -1,0 +1,29 @@
+name: crud-cd-staging
+
+on:
+  workflow_run:
+    workflows:
+      - test
+    branches: [ master ]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      countries:
+        required: true
+        type: string
+        default: '"ae","eg"'
+        description: String of comma separated country codes e.g. '"ae","eg","bh"'
+
+env:
+  DEFAULT_COUNTRIES: '"ae"'
+
+jobs:
+  cd:
+    name: Test2
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Smoke
+        run: echo ${{ inputs.countries || env.DEFAULT_COUNTRIES }}
