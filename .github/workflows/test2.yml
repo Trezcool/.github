@@ -1,4 +1,4 @@
-name: crud-cd-staging
+name: test2
 
 on:
   workflow_run:
@@ -20,7 +20,7 @@ env:
 
 jobs:
   cd:
-    name: Test2
+    name: test2
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
