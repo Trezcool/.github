@@ -17,6 +17,7 @@ on:
 
 jobs:
   cd:
+    name: OK
     strategy:
       matrix:
         country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
