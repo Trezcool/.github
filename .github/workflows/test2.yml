@@ -20,6 +20,10 @@ jobs:
     strategy:
       matrix:
         country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
-    uses: Trezcool/.github/.github/workflows/test3.yml@main
-    with:
-      country: ${{ matrix.country }}
+    # uses: Trezcool/.github/.github/workflows/test3.yml@main
+    # with:
+    #   country: ${{ matrix.country }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Smoke
+        run: echo ${{ matrix.country }}
