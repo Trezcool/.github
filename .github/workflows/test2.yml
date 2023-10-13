@@ -15,11 +15,11 @@ on:
         default: '"ae","eg"'
         description: String of comma separated country codes e.g. '"ae","eg","bh"'
 
-env:
-  DEFAULT_COUNTRIES: '"ae"'
-
 jobs:
   cd:
+    strategy:
+      matrix:
+        country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
     uses: Trezcool/.github/.github/workflows/test3.yml@main
     with:
-      countries: ${{ inputs.countries || env.DEFAULT_COUNTRIES }}
+      country: ${{ matrix.country }}
