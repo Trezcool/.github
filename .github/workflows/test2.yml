@@ -33,9 +33,9 @@ jobs:
       #       DEBUG_CONTEXT: ${{ toJson(github) }}
       #   run: echo "$DEBUG_CONTEXT"
 
-      - name: Checkout ref step
-        uses: actions/checkout@v3
+      # - name: Checkout ref step
+      #   uses: actions/checkout@v3
 
-      - uses: ./.github/actions/test@main
+      - uses: Trezcool/.github/.github/actions/test@main
         with:
           environment: test
