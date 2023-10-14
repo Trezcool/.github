@@ -8,17 +8,6 @@ inputs:
     required: true
     type: string
 
-# Permissions needed for reacting and adding comments for IssueOps commands
-permissions:
-  pull-requests: write
-  deployments: write
-  contents: write
-  checks: read
-  id-token: write # required to use OIDC authentication
-
-env:
-  AWS_DEFAULT_REGION: ap-southeast-1
-
 runs:
   using: "composite"
   steps:
@@ -29,4 +18,4 @@ runs:
     - name: Install serverless framework
       shell: bash
       run: |
-        echo "${{ inputs.var1 }} - ${{ env.AWS_DEFAULT_REGION }} - ${{ inputs.var2 }}"
+        echo "${{ inputs.var1 }} - ap-southeast-1 - ${{ inputs.var2 }}"
