@@ -7,15 +7,15 @@ on:
   #   # branches: [ master ]
   #   types:
   #     - completed
-  # workflow_dispatch:
+  workflow_dispatch:
     # inputs:
     #   countries:
     #     required: true
     #     type: string
     #     default: '"ae","eg"'
     #     description: String of comma separated country codes e.g. '"ae","eg","bh"'
-  issue_comment:
-    types: [ created ]
+  # issue_comment:
+  #   types: [ created ]
 
 jobs:
   cd:
@@ -28,7 +28,11 @@ jobs:
     # #   country: ${{ matrix.country }}
     runs-on: ubuntu-latest
     steps:
-      - name: Smoke
-        env:
-            DEBUG_CONTEXT: ${{ toJson(github) }}
-        run: echo "$DEBUG_CONTEXT"
+      # - name: Smoke
+      #   env:
+      #       DEBUG_CONTEXT: ${{ toJson(github) }}
+      #   run: echo "$DEBUG_CONTEXT"
+
+      - uses: Trezcool/.github/.github/actions/test
+        with:
+          environment: test
