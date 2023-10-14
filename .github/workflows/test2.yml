@@ -36,6 +36,6 @@ jobs:
       - name: Checkout ref step
         uses: actions/checkout@v3
 
-      - uses: ./.github/actions/test
+      - uses: ./.github/actions/test@main
         with:
           environment: test
