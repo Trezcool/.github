@@ -1,30 +1,32 @@
 name: test2
 
 on:
-  workflow_run:
-    workflows:
-      - test
-    # branches: [ master ]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows:
+  #     - test
+  #   # branches: [ master ]
+  #   types:
+  #     - completed
   workflow_dispatch:
-    inputs:
-      countries:
-        required: true
-        type: string
-        default: '"ae","eg"'
-        description: String of comma separated country codes e.g. '"ae","eg","bh"'
+    # inputs:
+    #   countries:
+    #     required: true
+    #     type: string
+    #     default: '"ae","eg"'
+    #     description: String of comma separated country codes e.g. '"ae","eg","bh"'
 
 jobs:
   cd:
-    name: OK
-    strategy:
-      matrix:
-        country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
-    # uses: Trezcool/.github/.github/workflows/test3.yml@main
-    # with:
-    #   country: ${{ matrix.country }}
+    # name: OK
+    # strategy:
+    #   matrix:
+    #     country: ${{ fromJson(format('[{0}]', inputs.countries)) }}
+    # # uses: Trezcool/.github/.github/workflows/test3.yml@main
+    # # with:
+    # #   country: ${{ matrix.country }}
     runs-on: ubuntu-latest
     steps:
       - name: Smoke
-        run: echo ${{ matrix.country }}
+        env:
+            DEBUG_CONTEXT: ${{ toJson(env) }}
+        run: echo "$DEBUG_CONTEXT"
