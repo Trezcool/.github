@@ -1,0 +1,29 @@
+name: test
+
+inputs:
+  environment:
+    required: true
+    type: string
+
+# Permissions needed for reacting and adding comments for IssueOps commands
+permissions:
+  pull-requests: write
+  deployments: write
+  contents: write
+  checks: read
+  id-token: write # required to use OIDC authentication
+
+env:
+  AWS_DEFAULT_REGION: ap-southeast-1
+  GH_ACCESS_TOKEN: ${{ secrets.TEST }}
+
+runs:
+  using: "composite"
+  steps:
+    # Checkout your projects repository based on the ref provided by the branch-deploy step
+    - name: Checkout ref step
+      uses: actions/checkout@v3
+
+    - name: Install serverless framework
+      run: |
+        npm echo "${{ inputs.environment }} - ${{ env.AWS_DEFAULT_REGION }} - ${{ env.GH_ACCESS_TOKEN }}"
