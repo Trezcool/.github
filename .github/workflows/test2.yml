@@ -38,5 +38,5 @@ jobs:
 
       - uses: Trezcool/.github/.github/actions/test@main
         with:
-          environment: test
-          token: ${{ secrets.TEST }}
+          var1: test
+          var2: ${{ secrets.TEST }}
