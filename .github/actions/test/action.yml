@@ -29,4 +29,4 @@ runs:
     - name: Install serverless framework
       shell: bash
       run: |
-        npm echo "${{ inputs.environment }} - ${{ env.AWS_DEFAULT_REGION }} - ${{ inputs.token }}"
+        echo "${{ inputs.environment }} - ${{ env.AWS_DEFAULT_REGION }} - ${{ inputs.token }}"
