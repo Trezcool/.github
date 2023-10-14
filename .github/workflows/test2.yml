@@ -7,13 +7,15 @@ on:
   #   # branches: [ master ]
   #   types:
   #     - completed
-  workflow_dispatch:
+  # workflow_dispatch:
     # inputs:
     #   countries:
     #     required: true
     #     type: string
     #     default: '"ae","eg"'
     #     description: String of comma separated country codes e.g. '"ae","eg","bh"'
+  issue_comment:
+    types: [ created ]
 
 jobs:
   cd:
